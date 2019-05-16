@@ -16,7 +16,6 @@
                         <a target="_blank" href="/plans/{{ $plan->id }}">{{ $plan->subject }}</a>
                         <a href="#" class="float-right">{{ $plan->plan_date }} @ {{ $plan->start_time.' - '. $plan->end_time }}</a>
                         <p>{{ $plan->description }}</p>
-                        {{ round((strtotime($plan->end_time) - time()) / 3600) }} hours
                         <a href="/plans/{{ $plan->id }}/complete"><i class="far fa-check-square">close</i></a><a href="/plans/{{ $plan->id }}/edit"><i class="far fa-edit">Edit</i></a>
                         @if(  round((strtotime($plan->end_time) - time()) / 3600) < 0 ) <p style="color: red;">*Plan schedule passed, please close</p> @endif
 
