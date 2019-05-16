@@ -20,6 +20,7 @@
 - There is a one-to-many relationship between plans and users
 
 ## Notes for Instructor
+- check the seeder for UsersTableSeeder for the test login details
 Every function listed above works but i wish i had more time to add more features such as User Management, and checks for existing plans
 
 

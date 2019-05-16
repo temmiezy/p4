@@ -1,27 +1,34 @@
 <?php
 
 # dashboard
-Route::get('/', 'PlanController@dashboard');
+//Route::get('/', 'PlanController@dashboard');
+
+Route::group( ['middleware' => 'auth' ], function()
+{
+    Route::get('/', 'PlanController@dashboard');
+
+    # add plans
+    Route::get('/create', 'PlanController@create');
+    Route::post('/plans', 'PlanController@store');
 
 
-# add plans
-Route::get('/create', 'PlanController@create');
-Route::post('/plans', 'PlanController@store');
+    Route::get('/plans', 'PlanController@index');
+    Route::get('/plans/week', 'PlanController@week');
+    Route::get('/plans/active', 'PlanController@active');
+    Route::get('/plans/closed', 'PlanController@closed');
 
-
-Route::get('/plans', 'PlanController@index');
-Route::get('/plans/week', 'PlanController@week');
-Route::get('/plans/active', 'PlanController@active');
-Route::get('/plans/closed', 'PlanController@closed');
-
-Route::get('/plans/{id}', 'PlanController@show');
-Route::get('plans/{id}/edit', 'PlanController@edit');
+    Route::get('/plans/{id}', 'PlanController@show');
+    Route::get('plans/{id}/edit', 'PlanController@edit');
 
 # close a plan
-Route::get('/plans/{id}/complete', 'PlanController@complete');
+    Route::get('/plans/{id}/complete', 'PlanController@complete');
 
 # Process edit for plan
-Route::put('/plans/{id}', 'PlanController@update');
+    Route::put('/plans/{id}', 'PlanController@update');
+});
+
+
+
 
 #logout
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
