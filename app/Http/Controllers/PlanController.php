@@ -52,7 +52,7 @@ class PlanController extends Controller
     {
         $currentUser = Auth::user();
         $start_date = date('Y-m-d');
-        $end_date = date('Y-m-d', strtotime('+1 day', strtotime(date('Y-m-d'))));
+        $end_date = date('Y-m-d', strtotime('+6 day', strtotime(date('Y-m-d'))));
         $plans = Plan::where('status', '=', 'active')
             ->where('user_id', '=', $currentUser->id)
             ->whereBetween('plan_date', [$start_date, $end_date])
