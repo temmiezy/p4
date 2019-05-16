@@ -1,0 +1,8 @@
+.fa-edit, .fa-check-square, .fa-minus-circle{
+    font-size: 20px;
+    margin: 5px;
+}
+
+.timeline li {
+    border-bottom:solid 2px;
+}
