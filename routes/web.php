@@ -24,7 +24,7 @@ Route::get('/plans/{id}/complete', 'PlanController@complete');
 Route::put('/plans/{id}', 'PlanController@update');
 
 #logout
-Route::get('/logout', 'PlanController@logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/debug', function () {
 

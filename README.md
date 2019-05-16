@@ -12,6 +12,8 @@
 - Authentication 
 - It was built with custom html with bootstrap 4
 - The dashboard shows the summary of completed and yet to be completed plans
+- Plans whose completion time has passed is not flagged
+- Registered users will only see the plan thet create
 
 ## Database Summary
 - Planner has 2 tables in total (users, plans)

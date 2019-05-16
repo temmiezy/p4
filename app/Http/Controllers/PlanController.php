@@ -11,7 +11,9 @@ class PlanController extends Controller
 
     public function dashboard()
     {
-        $plans = Plan::whereDate('plan_date', date('Y-m-d'))
+        $currentUser = Auth::user();
+        $plans = Plan::where('user_id', '=', $currentUser->id)
+            ->whereDate('plan_date', date('Y-m-d'))
             ->orderBy('plan_date', 'desc')
             ->orderBy('start_time')
             ->get();
@@ -35,7 +37,9 @@ class PlanController extends Controller
     public function index()
     {
         # get plans
+        $currentUser = Auth::user();
         $plans = Plan::where('status', '=', 'active')
+            ->where('user_id', '=', $currentUser->id)
             ->whereDate('plan_date', date('Y-m-d'))
             ->orderBy('plan_date', 'desc')
             ->orderBy('start_time')
@@ -46,9 +50,11 @@ class PlanController extends Controller
 
     public function week()
     {
+        $currentUser = Auth::user();
         $start_date = date('Y-m-d');
         $end_date = date('Y-m-d', strtotime('+1 day', strtotime(date('Y-m-d'))));
         $plans = Plan::where('status', '=', 'active')
+            ->where('user_id', '=', $currentUser->id)
             ->whereBetween('plan_date', [$start_date, $end_date])
             ->get();
         //dd($plans);
@@ -156,7 +162,9 @@ class PlanController extends Controller
 
     protected function getPlans($status='active')
     {
+        $currentUser = Auth::user();
         $plans = Plan::where('status', '=', $status)
+            ->where('user_id', '=', $currentUser->id)
             ->whereDate('plan_date', date('Y-m-d'))
             ->orderBy('plan_date', 'desc')
             ->orderBy('start_time')
